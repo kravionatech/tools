@@ -1,14 +1,21 @@
+import Header from "../components/Header/Header";
 import "./globals.css";
 
 export const metadata = {
-  title: "Kraviona",
-  description: "Kraviona MERN application",
+  title: "Kraviona Tools",
+  description: "",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>{/* Here insert Code HTML from Direct Backend */}</head>
+      <body>
+        {/* Header */}
+        <Header />
+        {children}
+        {/* Footer */}
+      </body>
     </html>
   );
 }

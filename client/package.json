@@ -9,8 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "lucide-react": "^1.34.0",
     "next": "^15.5.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3"
   }
 }

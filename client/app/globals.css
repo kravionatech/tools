@@ -1,8 +1,51 @@
-:root { color: #f5f1e8; background: #17211f; font-family: Georgia, serif; }
-* { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; }
-main { max-width: 760px; padding: 15vh 8vw; }
-.eyebrow { color: #d8a657; font: 700 0.8rem/1.2 sans-serif; letter-spacing: .18em; text-transform: uppercase; }
-h1 { max-width: 12ch; margin: 2rem 0 1rem; font-size: clamp(3.5rem, 9vw, 7rem); line-height: .92; font-weight: 400; }
-.intro { max-width: 38rem; color: #b9c2bb; font: 1.1rem/1.6 sans-serif; }
-.button { display: inline-block; margin-top: 2rem; padding: .8rem 1.1rem; color: #17211f; background: #d8a657; font: 700 .9rem sans-serif; text-decoration: none; }
+/* global.css */
+
+@import "tailwindcss";
+
+:root {
+  /* =========================================
+     KRAVIONA SEO DESIGN SYSTEM
+     ========================================= */
+
+  /* Brand */
+  --brand: #0B57D0;
+  --brand-hover: #0842A0;
+  --brand-soft: #E8F0FE;
+
+  /* Search / SEO */
+  --search-blue: #1A73E8;
+  --seo-green: #188038;
+  --seo-green-soft: #E6F4EA;
+  --seo-yellow: #F9AB00;
+  --seo-yellow-soft: #FEF7E0;
+  --seo-red: #D93025;
+  --seo-red-soft: #FCE8E6;
+
+  /* Neutrals */
+  --ink: #202124;
+  --text: #3C4043;
+  --muted: #5F6368;
+  --subtle: #80868B;
+
+  /* Surfaces */
+  --background: #F8F9FA;
+  --surface: #FFFFFF;
+  --surface-hover: #F1F3F4;
+
+  /* Borders */
+  --border: #DADCE0;
+  --border-light: #E8EAED;
+
+  /* Header */
+  --header-bg: #FFFFFF;
+  --header-dark: #202124;
+
+  /* Focus */
+  --focus: rgba(26, 115, 232, 0.18);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+}
