@@ -23,13 +23,14 @@ export default function AdminPage() {
   const [diagLoading, setDiagLoading] = useState(false);
   const [diagError, setDiagError] = useState("");
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  const apiUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
 
   useEffect(() => {
     async function loadSettings() {
       setLoading(true);
       try {
-        const res = await fetch(`${apiUrl}/api/admin/settings`);
+        const endpoint = apiUrl ? `${apiUrl}/api/admin/settings` : "/api/admin/settings";
+        const res = await fetch(endpoint);
         if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch admin settings`);
         const json = await res.json();
         if (json.success && json.data) {
@@ -57,7 +58,8 @@ export default function AdminPage() {
     setErrorMessage("");
 
     try {
-      const res = await fetch(`${apiUrl}/api/admin/settings`, {
+      const endpoint = apiUrl ? `${apiUrl}/api/admin/settings` : "/api/admin/settings";
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -90,7 +92,8 @@ export default function AdminPage() {
     setDiagResult(null);
 
     try {
-      const res = await fetch(`${apiUrl}/api/seo/domain-check`, {
+      const endpoint = apiUrl ? `${apiUrl}/api/seo/domain-check` : "/api/seo/domain-check";
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: testDomain }),
