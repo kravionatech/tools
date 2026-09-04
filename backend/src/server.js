@@ -6,6 +6,7 @@ import { config } from "./config/config.js";
 import User from "./model/user.model.js";
 import { domainAge, normalizeDomain } from "./seo.js";
 import { seoProvider } from "./providers/seoProvider.js";
+import { getSettings, getPublicSettings, updateSettings } from "./settings.js";
 
 const app = express();
 
@@ -63,8 +64,26 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(express.json({ limit: "50kb" }));
+app.use(express.json({ limit: "500kb" }));
 app.use(morgan("dev"));
+
+// Settings endpoints
+app.get("/api/settings", (req, res) => {
+  return res.json({ success: true, data: getPublicSettings() });
+});
+
+app.get("/api/admin/settings", (req, res) => {
+  return res.json({ success: true, data: getSettings() });
+});
+
+app.post("/api/admin/settings", (req, res) => {
+  try {
+    const updated = updateSettings(req.body);
+    return res.json({ success: true, message: "Settings saved successfully", data: updated });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 // Root & Health
 app.get("/", (req, res) => {

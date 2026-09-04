@@ -30,10 +30,12 @@ export default function DomainChecker({ initialDomain = "" }) {
     setError("");
     setData(null);
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    // Use relative path by default so browser hits same origin (proxied by Nginx or Next rewrites)
+    const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+    const endpoint = baseUrl ? `${baseUrl}/api/seo/domain-check` : "/api/seo/domain-check";
 
     try {
-      const response = await fetch(`${apiUrl}/api/seo/domain-check`, {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain: targetDomain }),
