@@ -17,7 +17,8 @@ interface PublicCustomCode {
   metaPixel: { pixelId: string } | null;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const rawApiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const API_BASE = rawApiBase.replace(/\/api\/?$/, "");
 
 // In-memory cache to avoid repeated HTTP requests on every single route transition
 let cachedCustomCode: PublicCustomCode | null = null;
@@ -29,7 +30,7 @@ async function fetchPublicCode(): Promise<PublicCustomCode | null> {
 
   fetchPromise = (async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/custom-code/public`);
+      const res = await fetch(`${API_BASE}/api/settings/custom-code/public`);
       if (res.ok) {
         const data = await res.json();
         cachedCustomCode = data;
