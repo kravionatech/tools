@@ -1,7 +1,7 @@
 import { ApiResponse } from "@/types";
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const rawBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+export const API_BASE_URL = rawBase.replace(/\/api\/?$/, "");
 
 interface RequestOptions extends RequestInit {
   token?: string | null;
@@ -26,9 +26,14 @@ export async function apiClient<T = unknown>(
 ): Promise<T> {
   const { token, params, headers, ...customConfig } = options;
 
+  let cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  if (cleanEndpoint.startsWith("/api/api/")) {
+    cleanEndpoint = cleanEndpoint.replace("/api/api/", "/api/");
+  }
+
   let url = endpoint.startsWith("http")
     ? endpoint
-    : `${API_BASE_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
+    : `${API_BASE_URL}${cleanEndpoint}`;
 
   if (params) {
     const searchParams = new URLSearchParams();

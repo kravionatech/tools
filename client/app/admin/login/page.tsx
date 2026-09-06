@@ -28,7 +28,9 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${apiBase}/api/auth/login`, {
+      const baseUrl = apiBase ? apiBase.replace(/\/api\/?$/, "") : "";
+      const endpoint = baseUrl ? `${baseUrl}/api/auth/login` : "/api/auth/login";
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim(), password }),
