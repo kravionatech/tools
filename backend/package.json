@@ -1,0 +1,25 @@
+{
+  "name": "kraviona_backend",
+  "version": "1.0.0",
+  "description": "NA",
+  "license": "ISC",
+  "author": "amar",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app/server.js",
+    "dev": "nodemon ./app/server.js",
+    "create-admin": "node ./scripts/create-admin.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.5",
+    "nodemon": "^3.1.14"
+  }
+}
